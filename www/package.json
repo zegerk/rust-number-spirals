@@ -1,0 +1,39 @@
+{
+  "name": "rust-rust_number_spirals",
+  "version": "0.1.0",
+  "description": "show number spirals with primes",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zegerk/rust-number-spirals"
+  },
+  "keywords": [
+    "webassembly",
+    "wasm",
+    "rust",
+    "webpack",
+    "primes",
+    "number-spirals"
+  ],
+  "author": "Zeger Knops <zeger@zeger.nl>",
+  "license": "GNU3",
+  "bugs": {
+    "url": "https://github.com/zegerk/rust-number-spirals/issues"
+  },
+  "homepage": "https://github.com/zegerk/rust-number-spirals#readme",
+  "dependencies": {
+    "svg-pan-zoom": "^3.6.1",
+    "wasm-rust-number-spirals": "file:../pkg"
+  },
+  "devDependencies": {
+    "hello-wasm-pack": "^0.1.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "copy-webpack-plugin": "^5.0.0"
+  }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WASM Number Spirals</title>
+
+    <style>
+        body {
+          margin: 0;
+          font-family: sans-serif;
+        }
+
+        .main-container {
+          position: relative;
+          height: 100vh;
+        }
+
+        .controls {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          width: 200px;
+          padding: 10px;
+          background-color: #f2f2f2;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          z-index: 1;
+        }
+
+        .info-box div {
+          display: flex;
+        }
+
+        #prime-numbers-svg {
+          width: 100%;
+          height: 100%;          
+        }
+
+        #svg-container {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .info-box {
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          width: 200px;
+          padding: 10px;
+          background-color: #f2f2f2;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          z-index: 1;
+        }
+
+        .info-box .info-row {
+          display: flex;
+          justify-content: space-between;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="controls">
+          <h2>Controls</h2>
+          <p>
+            Numbers above 100k can take while, the generate button is disabled 
+            when the spiral is being created.
+            <br/>
+            <br/>
+            Pan and zoom with mouse.
+            <br/>
+            Click on a dot for more info.
+          </p>
+          <div>
+              <label for="n">Number of Primes:</label>
+              <input type="number" id="n" value="10000" min="1" step="1">
+          </div>
+          <button id="generate">Generate number spiral</button>
+
+          <h3>Visualisation</h3>
+          <div>
+            <input type="checkbox" id="toggle-prime" checked>
+            <label for="toggle-prime">Primes</label>
+          </div>
+          <div>
+            <input type="checkbox" id="toggle-composite" checked>
+            <label for="toggle-composite">Composites</label>
+          </div>
+          <div>
+            <input type="checkbox" id="toggle-mersenne" checked>
+            <label for="toggle-mersenne">Mersenne primes</label>
+          </div>
+          <div>
+            <input type="checkbox" id="toggle-twin" checked>
+            <label for="toggle-twin">Twin primes</label>
+          </div>
+          <div>
+            <input type="checkbox" id="toggle-germain" checked>
+            <label for="toggle-germain">Germain primes</label>
+          </div>
+          <div>
+            <input type="checkbox" id="toggle-safe" checked>
+            <label for="toggle-safe">Safe primes</label>
+          </div>
+      </div>
+
+      <div class="info-box">
+        <h2>Info</h2>
+        <div class="info-row">
+          <strong>Number:</strong>
+          <span id="number"></span>
+        </div>
+        <div class="info-row">
+          <strong>Divisors:</strong>
+          <span id="divisors"></span>
+        </div>
+        <div class="info-row">
+          <strong>Prime:</strong>
+          <span id="prime"></span>
+        </div>
+        <div class="info-row">
+          <strong>Mersenne Prime:</strong>
+          <span id="mersenne"></span>
+        </div>
+        <div class="info-row">
+          <strong>Twin Prime:</strong>
+          <span id="twin"></span>
+        </div>
+        <div class="info-row">
+          <strong>Germain Prime:</strong>
+          <span id="germain"></span>
+        </div>
+        <div class="info-row">
+          <strong>Safe Prime:</strong>
+          <span id="safe"></span>
+        </div>
+      </div>
+
+      <div id="svg-container">
+      </div>
+      <script>        
+        function handleCircleClick(event) {
+          const data = JSON.parse(event.target.attributes['number-data'].value);
+          console.log(data);
+
+          // Iterate through the data object keys and update the info box
+          for (const property in data) {
+            let value = data[property];
+
+            // Prepare an id for the corresponding HTML element
+            let elementId = property;
+
+            // If the property starts with 'is_', convert the boolean to 'Yes' or 'No'
+            if (property.startsWith('is_')) {
+              value = value ? 'Yes' : 'No';
+              elementId = property.slice(3);
+            }
+
+            document.getElementById(elementId).innerText = value;
+          }
+        }
+      </script>
+    </div>
+
+    <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+    <script src="./bootstrap.js"></script>
+    
+    <a class="github-fork-ribbon" target="_blank" href="https://github.com/zegerk/rust-number-spirals" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+
+  </body>
+</html>
