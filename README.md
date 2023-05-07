@@ -1,6 +1,6 @@
 # rust-number-spirals
 
-Create SVG number spirals, ported the code from Python to Rust using chatGPT.
+Create SVG [prime number spirals](https://en.wikipedia.org/wiki/Ulam_spiral), ported the code from Python to Rust using chatGPT.
 
 Demo: https://number-spirals.zeger.app/
 
