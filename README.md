@@ -2,6 +2,8 @@
 
 Create SVG number spirals, ported the code from Python to Rust using chatGPT.
 
+Demo: https://number-spirals.zeger.app/
+
 ## Compile
 
 wasm-pack build
